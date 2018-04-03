@@ -31,7 +31,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="GLFW32/include" />
+			<Add directory="Common" />
 		</Compiler>
+		<Linker>
+			<Add library="glfw3" />
+			<Add library="gdi32" />
+			<Add library="opengl32" />
+			<Add directory="GLFW32/lib" />
+		</Linker>
+		<Unit filename="CommonFunctions.cpp" />
+		<Unit filename="Common/CommonFunctions.h" />
+		<Unit filename="Common/glad.h" />
+		<Unit filename="GLFW32/include/GLFW/glfw3.h" />
+		<Unit filename="GLFW32/include/GLFW/glfw3native.h" />
+		<Unit filename="glad.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
