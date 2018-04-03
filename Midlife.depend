@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1522730445 source:d:\codeblocksproj\midlife\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<dlfcn.h>
+
+1522642931 d:\codeblocksproj\midlife\common\glad\glad.h
+	<windows.h>
+	<stddef.h>
+	<KHR/khrplatform.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1522642931 d:\codeblocksproj\midlife\common\khr\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
+1522730464 source:d:\codeblocksproj\midlife\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	"Common/CommonFunctions.h"
+	<iostream>
+
+1522721552 d:\codeblocksproj\midlife\glfw32\include\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<vulkan/vulkan.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1522211452 d:\codeblocksproj\midlife\common\commonfunctions.h
+
+1522730598 source:d:\codeblocksproj\midlife\commonfunctions.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	<iostream>
+
