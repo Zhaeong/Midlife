@@ -2,7 +2,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Common/CommonFunctions.h"
+#include <CommonFunctions.h>
+
+#include <Shader.h>
 
 #include <iostream>
 
@@ -23,20 +25,6 @@ then
 glEnableVertexAttribArray(0);
 
 */
-char *vertexShaderSource = "#version 330 core\n"
-"layout (location = 1) in vec3 aPos;\n"
-"void main()\n"
-"{"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);"
-"}\0";
-
-
-char *fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
 
 int main()
 {
@@ -68,36 +56,14 @@ int main()
     }
 
 	//Bind the VAO
-
 	GLuint VAO;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
 
-
 	//Load the shaders
-	int shaderProgram = LoadShaders(vertexShaderSource, fragmentShaderSource);
 
-
-	////Point data
-	//float vertices[] = {
-	//	-0.5f, -0.5f, 0.0f,
-	//	0.5f, -0.5f, 0.0f,
-	//	0.0f,  0.5f, 0.0f
-	//};
-
-	////Bind the VBO
-	//GLuint VBO;
-
-	////first param is number of buffers to be generated
-	//glGenBuffers(1, &VBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-	////put data into buffer
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	////assign data in the format
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    Shader myShader("Shaders/vertexShader.vs", "Shaders/fragmentShader.fs");
 
 	float vertices2[] = {
 		0.1f,0.1f, 0.0f,
@@ -124,11 +90,7 @@ int main()
 	//0 because vertex glVertexAttribPointer index is 0
 	glEnableVertexAttribArray(1);
 
-
-	glUseProgram(shaderProgram);
-
-
-
+    myShader.use();
 
 
     // render loop
@@ -148,14 +110,6 @@ int main()
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
-
-
-	//		glUseProgram(shaderProgram);
-	//glBindVertexArray(VAO);
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
-
-
-
     }
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
