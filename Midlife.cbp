@@ -45,6 +45,8 @@
 		<Unit filename="Common/glad/glad.h" />
 		<Unit filename="GLFW32/include/GLFW/glfw3.h" />
 		<Unit filename="GLFW32/include/GLFW/glfw3native.h" />
+		<Unit filename="Shaders/fragmentShader.fs" />
+		<Unit filename="Shaders/vertexShader.vs" />
 		<Unit filename="glad.c">
 			<Option compilerVar="CC" />
 		</Unit>
