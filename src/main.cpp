@@ -9,7 +9,7 @@
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, Shader shaderObj);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -65,10 +65,11 @@ int main()
 
     Shader myShader("Shaders/vertexShader.vs", "Shaders/fragmentShader.fs");
 
-	float vertices2[] = {
-		0.1f,0.1f, 0.0f,
-		0.7f, 0.0f, 0.0f,
-		0.0f, 0.7f, 0.0f
+	float vertices[] = {
+	    //position       //colors
+		0.1f,0.1f, 0.0f, 1.0f, 0.0f, 0.0f,
+		0.7f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.7f, 0.0f, 0.0f, 0.0f, 1.0f
 	};
 
 	//Bind the VBO
@@ -79,17 +80,28 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
 
 	//put data into buffer
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	//assign data in the format
 	//size is number of componenets 2 would also work (position and color)
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+	//First one is index
+	//Second is number of values per vertex
+	//Third is type of value
+	//Fourth is whether we should normalize
+	//Fifth is the stride (number of bytes till next value
+    //Sixth is the starting value
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+
+	//Second attirbute pointer will be color
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
 
 
 	//Enable the VAO
 	//0 because vertex glVertexAttribPointer index is 0
 	//and also shader location is 0
 	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
 
     myShader.use();
 
@@ -100,7 +112,7 @@ int main()
     {
         // input
         // -----
-        processInput(window);
+        processInput(window, myShader);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -121,10 +133,19 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow *window, Shader shaderObj)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, true);
+    }
+
+
+    if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        printf("heyyy");
+    }
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
