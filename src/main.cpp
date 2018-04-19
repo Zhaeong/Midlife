@@ -103,7 +103,21 @@ int main()
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
+	//
+
+
+
+
+
+    //make sure any shader specific changes are called after this line
+    //as this activates the shader
     myShader.use();
+
+
+    //int vertexColorLocation = glGetUniformLocation(myShader.ID, "ourColor");
+    //glUniform4f(vertexColorLocation, 0.4f, 0.4f, 0.4f, 1.0f);
+
+    myShader.setFloat("customColor", 0.4f);
 
 
     // render loop
@@ -140,10 +154,14 @@ void processInput(GLFWwindow *window, Shader shaderObj)
         glfwSetWindowShouldClose(window, true);
     }
 
-
     if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
     {
-        printf("heyyy");
+        shaderObj.setFloat("customColor", 0.7f);
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+    {
+        shaderObj.setFloat("customColor", 0.3f);
     }
 
 }
